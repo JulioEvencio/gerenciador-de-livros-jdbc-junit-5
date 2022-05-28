@@ -10,11 +10,11 @@ public class Book {
 		super();
 	}
 
-	public Book(Integer id, String nome, String autor) {
+	public Book(Integer id, String name, String author) {
 		super();
 		this.id = id;
-		this.name = nome;
-		this.author = autor;
+		this.name = name;
+		this.author = author;
 	}
 
 	public Integer getId() {
@@ -25,20 +25,20 @@ public class Book {
 		this.id = id;
 	}
 
-	public String getNome() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNome(String nome) {
-		this.name = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getAutor() {
+	public String getAuthor() {
 		return author;
 	}
 
-	public void setAutor(String autor) {
-		this.author = autor;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 }
