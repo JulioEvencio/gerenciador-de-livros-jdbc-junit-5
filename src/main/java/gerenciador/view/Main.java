@@ -1,5 +1,7 @@
 package gerenciador.view;
 
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -10,7 +12,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import gerenciador.model.Book;
+import gerenciador.service.BookService;
+
 public class Main extends JFrame {
+
+	private BookService service;
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +37,8 @@ public class Main extends JFrame {
 	private JTable table;
 
 	public Main() {
+		service = new BookService();
+
 		this.initComponent();
 		this.updateTable();
 	}
@@ -95,20 +104,34 @@ public class Main extends JFrame {
 	}
 
 	private void updateTable() {
-		// Code
+		DefaultTableModel tableAux = (DefaultTableModel) table.getModel();
+		tableAux.setRowCount(0);
+
+		List<Book> list = service.findByAll();
+		Object[] data = new Object[4];
+
+		for (Book book : list) {
+			data[0] = book.getId();
+			data[1] = book.getName();
+			data[2] = book.getAuthor();
+
+			tableAux.addRow(data);
+		}
 	}
 
 	private void addBook() {
-		new AddBook(this).setVisible(true);
+		new AddBook(this, service).setVisible(true);
 		this.updateTable();
 	}
 
 	private void updateBook() {
-		new UpdateBook(this).setVisible(true);
+		new UpdateBook(this, service).setVisible(true);
+		this.updateTable();
 	}
 
 	private void deleteBoook() {
-		new DeleteBook(this).setVisible(true);
+		new DeleteBook(this, service).setVisible(true);
+		this.updateTable();
 	}
 
 	private void showInfo() {

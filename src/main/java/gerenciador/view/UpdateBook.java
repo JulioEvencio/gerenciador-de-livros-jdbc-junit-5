@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,12 +12,19 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import gerenciador.exception.UpdateBookFailedException;
+import gerenciador.model.Book;
+import gerenciador.service.BookService;
+
 public class UpdateBook extends JDialog {
+
+	private BookService service;
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,8 +48,10 @@ public class UpdateBook extends JDialog {
 	private JPanel panelUpdate;
 	private JButton btnUpdate;
 
-	public UpdateBook(JFrame frame) {
+	public UpdateBook(JFrame frame, BookService service) {
 		super(frame, true);
+
+		this.service = service;
 
 		this.initComponent();
 	}
@@ -121,11 +131,33 @@ public class UpdateBook extends JDialog {
 	}
 
 	private void addItensComboBox() {
-		// Code
+		List<Book> list = service.findByAll();
+
+		for (Book book : list)
+			txtId.addItem(String.valueOf(book.getId()));
 	}
 
 	private void updateBook() {
-		// Code
+		try {
+			String book = txtId.getSelectedItem().toString();
+
+			String deleteMessage = "Deseja realmente editar o livro?";
+			Integer delete = JOptionPane.showConfirmDialog(this, deleteMessage, "Gerenciador de Livros",
+					JOptionPane.WARNING_MESSAGE);
+
+			if (delete != 0)
+				return;
+
+			service.update(new Book(Integer.valueOf(book), txtName.getText(), txtAuthor.getText()));
+
+			String message = "Livro editado com sucesso!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.INFORMATION_MESSAGE);
+
+			this.dispose();
+		} catch (UpdateBookFailedException | NumberFormatException e) {
+			String message = "Erro ao remover o livro!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

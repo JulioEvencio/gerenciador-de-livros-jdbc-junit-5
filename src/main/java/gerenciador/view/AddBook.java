@@ -10,12 +10,19 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import gerenciador.exception.SaveBookFailedException;
+import gerenciador.model.Book;
+import gerenciador.service.BookService;
+
 public class AddBook extends JDialog {
+
+	private BookService service;
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,8 +43,10 @@ public class AddBook extends JDialog {
 	private JPanel panelAdd;
 	private JButton btnAdd;
 
-	public AddBook(JFrame frame) {
+	public AddBook(JFrame frame, BookService service) {
 		super(frame, true);
+
+		this.service = service;
 
 		this.initComponent();
 	}
@@ -107,7 +116,17 @@ public class AddBook extends JDialog {
 	}
 
 	private void addBook() {
-		// Code
+		try {
+			service.save(new Book(null, txtName.getText(), txtAuthor.getText()));
+
+			String message = "Livro adicionado com sucesso!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.INFORMATION_MESSAGE);
+
+			this.dispose();
+		} catch (SaveBookFailedException e) {
+			String message = "Erro ao adicionar o livro!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }
