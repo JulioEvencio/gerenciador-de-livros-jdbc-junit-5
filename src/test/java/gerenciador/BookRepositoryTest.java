@@ -8,7 +8,7 @@ import org.mockito.MockitoAnnotations;
 import gerenciador.model.Book;
 import gerenciador.repository.BookRepository;
 
-public class LivroRepositoryTest {
+public class BookRepositoryTest {
 
 	@Mock
 	private BookRepository repository;
