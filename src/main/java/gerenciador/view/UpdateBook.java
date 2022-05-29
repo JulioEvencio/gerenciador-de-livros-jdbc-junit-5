@@ -83,9 +83,6 @@ public class UpdateBook extends JDialog {
 		this.addItensComboBox();
 		txtId.setFont(fontField);
 		txtId.setPreferredSize(new Dimension(365, 20));
-		txtId.addActionListener(ActionListener -> {
-			this.updateItemSelected();
-		});
 		panelId.add(txtId);
 
 		panelName = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -124,10 +121,6 @@ public class UpdateBook extends JDialog {
 	}
 
 	private void addItensComboBox() {
-		// Code
-	}
-
-	private void updateItemSelected() {
 		// Code
 	}
 
