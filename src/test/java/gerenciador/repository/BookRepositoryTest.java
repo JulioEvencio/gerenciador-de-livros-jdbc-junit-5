@@ -1,4 +1,4 @@
-package gerenciador;
+package gerenciador.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import gerenciador.model.Book;
-import gerenciador.repository.BookRepository;
 
 public class BookRepositoryTest {
 
