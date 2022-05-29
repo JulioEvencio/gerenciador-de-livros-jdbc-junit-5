@@ -104,7 +104,7 @@ public class Main extends JFrame {
 	}
 
 	private void updateBook() {
-		// Code
+		new UpdateBook(this).setVisible(true);
 	}
 
 	private void deleteBoook() {
