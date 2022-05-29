@@ -40,7 +40,7 @@ public class DeleteBook extends JDialog {
 	private void initComponent() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Gerenciador de Livros");
-		this.setSize(400, 300);
+		this.setSize(400, 200);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
