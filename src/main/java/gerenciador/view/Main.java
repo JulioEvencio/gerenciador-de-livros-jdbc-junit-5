@@ -99,7 +99,8 @@ public class Main extends JFrame {
 	}
 
 	private void addBook() {
-		// Code
+		new AddBook(this).setVisible(true);
+		this.updateTable();
 	}
 
 	private void updateBook() {
