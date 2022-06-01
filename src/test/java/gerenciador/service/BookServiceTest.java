@@ -27,7 +27,7 @@ public class BookServiceTest {
 
 	@Test
 	void deve_recuperar_todos_os_livro_no_banco_de_dados() throws Exception {
-		service.findByAll();
+		service.findAll();
 	}
 
 	@Test

@@ -110,7 +110,7 @@ public class Main extends JFrame {
 			DefaultTableModel tableAux = (DefaultTableModel) table.getModel();
 			tableAux.setRowCount(0);
 
-			List<Book> list = service.findByAll();
+			List<Book> list = service.findAll();
 			Object[] data = new Object[4];
 
 			for (Book book : list) {

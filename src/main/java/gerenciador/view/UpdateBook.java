@@ -134,7 +134,7 @@ public class UpdateBook extends JDialog {
 
 	private void addItensComboBox() {
 		try {
-			List<Book> list = service.findByAll();
+			List<Book> list = service.findAll();
 
 			for (Book book : list)
 				txtId.addItem(String.valueOf(book.getId()));

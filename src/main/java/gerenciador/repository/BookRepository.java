@@ -38,7 +38,7 @@ public class BookRepository {
 		}
 	}
 
-	public List<Book> findByAll() throws ConnectionFailedException, FindBookFailedException {
+	public List<Book> findAll() throws ConnectionFailedException, FindBookFailedException {
 		try (Connection con = new ConnectionFactory().getConnection()) {
 			String sql = "SELECT * FROM tb_livro;";
 			PreparedStatement stmt = con.prepareStatement(sql);

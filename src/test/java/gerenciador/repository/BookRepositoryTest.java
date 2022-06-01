@@ -24,7 +24,7 @@ public class BookRepositoryTest {
 
 	@Test
 	void deve_recuperar_todos_os_livro_no_banco_de_dados() throws Exception {
-		repository.findByAll();
+		repository.findAll();
 	}
 
 	@Test

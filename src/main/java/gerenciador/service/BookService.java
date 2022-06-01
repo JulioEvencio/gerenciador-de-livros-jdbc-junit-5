@@ -22,8 +22,8 @@ public class BookService {
 		return repository.findById(id);
 	}
 
-	public List<Book> findByAll() throws ConnectionFailedException, FindBookFailedException {
-		return repository.findByAll();
+	public List<Book> findAll() throws ConnectionFailedException, FindBookFailedException {
+		return repository.findAll();
 	}
 
 	public void save(Book book) throws ConnectionFailedException, SaveBookFailedException {
