@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import gerenciador.exception.ConnectionFailedException;
+import gerenciador.exception.FindBookFailedException;
 import gerenciador.exception.UpdateBookFailedException;
 import gerenciador.model.Book;
 import gerenciador.service.BookService;
@@ -131,10 +133,18 @@ public class UpdateBook extends JDialog {
 	}
 
 	private void addItensComboBox() {
-		List<Book> list = service.findByAll();
+		try {
+			List<Book> list = service.findByAll();
 
-		for (Book book : list)
-			txtId.addItem(String.valueOf(book.getId()));
+			for (Book book : list)
+				txtId.addItem(String.valueOf(book.getId()));
+		} catch (ConnectionFailedException e) {
+			String message = "Erro ao conectar com o banco de dados!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+		} catch (FindBookFailedException e) {
+			String message = "Erro ao carregar dos dados!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void updateBook() {
@@ -154,6 +164,9 @@ public class UpdateBook extends JDialog {
 			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.INFORMATION_MESSAGE);
 
 			this.dispose();
+		} catch (ConnectionFailedException e) {
+			String message = "Erro ao conectar com o banco de dados!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
 		} catch (UpdateBookFailedException | NumberFormatException e) {
 			String message = "Erro ao remover o livro!";
 			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);

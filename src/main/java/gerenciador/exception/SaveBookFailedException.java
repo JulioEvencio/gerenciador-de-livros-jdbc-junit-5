@@ -1,6 +1,6 @@
 package gerenciador.exception;
 
-public class SaveBookFailedException extends RuntimeException {
+public class SaveBookFailedException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 

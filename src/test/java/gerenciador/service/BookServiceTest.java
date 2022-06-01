@@ -13,7 +13,7 @@ public class BookServiceTest {
 	private BookService service;
 
 	@BeforeEach
-	void setup() {
+	void setup() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		service.save(new Book(null, "Livro 1", "Autor 1"));
 		service.save(new Book(null, "Livro 2", "Autor 2"));

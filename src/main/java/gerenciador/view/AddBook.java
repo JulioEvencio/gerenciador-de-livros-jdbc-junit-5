@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import gerenciador.exception.ConnectionFailedException;
 import gerenciador.exception.SaveBookFailedException;
 import gerenciador.model.Book;
 import gerenciador.service.BookService;
@@ -123,6 +124,9 @@ public class AddBook extends JDialog {
 			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.INFORMATION_MESSAGE);
 
 			this.dispose();
+		} catch (ConnectionFailedException e) {
+			String message = "Erro ao conectar com o banco de dados!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
 		} catch (SaveBookFailedException e) {
 			String message = "Erro ao adicionar o livro!";
 			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);

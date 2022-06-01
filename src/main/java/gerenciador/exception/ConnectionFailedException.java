@@ -1,6 +1,6 @@
 package gerenciador.exception;
 
-public class ConnectionFailedException extends RuntimeException {
+public class ConnectionFailedException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 

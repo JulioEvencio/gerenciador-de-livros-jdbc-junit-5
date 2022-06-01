@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import gerenciador.exception.ConnectionFailedException;
+import gerenciador.exception.FindBookFailedException;
 import gerenciador.model.Book;
 import gerenciador.service.BookService;
 
@@ -104,18 +106,26 @@ public class Main extends JFrame {
 	}
 
 	private void updateTable() {
-		DefaultTableModel tableAux = (DefaultTableModel) table.getModel();
-		tableAux.setRowCount(0);
+		try {
+			DefaultTableModel tableAux = (DefaultTableModel) table.getModel();
+			tableAux.setRowCount(0);
 
-		List<Book> list = service.findByAll();
-		Object[] data = new Object[4];
+			List<Book> list = service.findByAll();
+			Object[] data = new Object[4];
 
-		for (Book book : list) {
-			data[0] = book.getId();
-			data[1] = book.getName();
-			data[2] = book.getAuthor();
+			for (Book book : list) {
+				data[0] = book.getId();
+				data[1] = book.getName();
+				data[2] = book.getAuthor();
 
-			tableAux.addRow(data);
+				tableAux.addRow(data);
+			}
+		} catch (ConnectionFailedException e) {
+			String message = "Erro ao conectar com o banco de dados!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+		} catch (FindBookFailedException e) {
+			String message = "Erro ao carregar dos dados!";
+			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

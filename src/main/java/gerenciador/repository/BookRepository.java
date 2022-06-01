@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import gerenciador.exception.ConnectionFailedException;
 import gerenciador.exception.DeleteBookFailedException;
 import gerenciador.exception.FindBookFailedException;
 import gerenciador.exception.SaveBookFailedException;
@@ -15,7 +16,7 @@ import gerenciador.model.Book;
 
 public class BookRepository {
 
-	public Book findById(Integer id) {
+	public Book findById(Integer id) throws ConnectionFailedException, FindBookFailedException {
 		try (Connection con = new ConnectionFactory().getConnection()) {
 			String sql = "SELECT nome, autor FROM tb_livro WHERE id = ?;";
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -37,7 +38,7 @@ public class BookRepository {
 		}
 	}
 
-	public List<Book> findByAll() {
+	public List<Book> findByAll() throws ConnectionFailedException, FindBookFailedException {
 		try (Connection con = new ConnectionFactory().getConnection()) {
 			String sql = "SELECT * FROM tb_livro;";
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -56,7 +57,7 @@ public class BookRepository {
 		}
 	}
 
-	public void save(Book book) {
+	public void save(Book book) throws ConnectionFailedException, SaveBookFailedException {
 		try (Connection con = new ConnectionFactory().getConnection()) {
 			String sql = "INSERT INTO tb_livro (nome, autor) VALUES (?, ?);";
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -71,7 +72,7 @@ public class BookRepository {
 		}
 	}
 
-	public void update(Book book) {
+	public void update(Book book) throws ConnectionFailedException, UpdateBookFailedException {
 		try (Connection con = new ConnectionFactory().getConnection()) {
 			String sql = "UPDATE tb_livro SET nome = ?, autor = ? WHERE id = ?;";
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -87,7 +88,7 @@ public class BookRepository {
 		}
 	}
 
-	public void delete(Integer id) {
+	public void delete(Integer id) throws ConnectionFailedException, DeleteBookFailedException {
 		try (Connection con = new ConnectionFactory().getConnection()) {
 			String sql = "DELETE FROM tb_livro WHERE id = ?;";
 			PreparedStatement stmt = con.prepareStatement(sql);

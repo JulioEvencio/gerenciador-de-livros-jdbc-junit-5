@@ -1,6 +1,6 @@
 package gerenciador.exception;
 
-public class FindBookFailedException extends RuntimeException {
+public class FindBookFailedException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 

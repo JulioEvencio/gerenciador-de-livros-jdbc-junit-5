@@ -8,7 +8,7 @@ import gerenciador.exception.ConnectionFailedException;
 
 public class ConnectionFactory {
 
-	public Connection getConnection() {
+	public Connection getConnection() throws ConnectionFailedException {
 		String url = "jdbc:mysql://localhost/gerenciador_de_livros";
 		String user = "julio";
 		String password = "123";

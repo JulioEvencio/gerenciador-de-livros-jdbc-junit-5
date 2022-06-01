@@ -1,6 +1,6 @@
 package gerenciador.exception;
 
-public class DeleteBookFailedException extends RuntimeException {
+public class DeleteBookFailedException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 

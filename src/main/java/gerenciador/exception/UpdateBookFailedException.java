@@ -1,6 +1,6 @@
 package gerenciador.exception;
 
-public class UpdateBookFailedException extends RuntimeException {
+public class UpdateBookFailedException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
