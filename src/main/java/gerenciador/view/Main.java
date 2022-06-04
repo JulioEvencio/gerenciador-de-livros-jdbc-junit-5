@@ -63,30 +63,22 @@ public class Main extends JFrame {
 		menuBar.add(menuBook);
 
 		menuBookAdd = new JMenuItem("Adicionar Livro");
-		menuBookAdd.addActionListener(ActionEvent -> {
-			this.addBook();
-		});
+		menuBookAdd.addActionListener(ActionEvent -> this.addBook());
 		menuBook.add(menuBookAdd);
 
 		menuBookUpdate = new JMenuItem("Editar Livro");
-		menuBookUpdate.addActionListener(ActionListener -> {
-			this.updateBook();
-		});
+		menuBookUpdate.addActionListener(ActionListener -> this.updateBook());
 		menuBook.add(menuBookUpdate);
 
 		menuBookDelete = new JMenuItem("Remover Livro");
-		menuBookDelete.addActionListener(ActionListener -> {
-			this.deleteBoook();
-		});
+		menuBookDelete.addActionListener(ActionListener -> this.deleteBoook());
 		menuBook.add(menuBookDelete);
 
 		menuInfo = new JMenu("Sobre");
 		menuBar.add(menuInfo);
 
 		menuInfoItem = new JMenuItem("Info");
-		menuInfoItem.addActionListener(ActionListener -> {
-			this.showInfo();
-		});
+		menuInfoItem.addActionListener(ActionListener -> this.showInfo());
 		menuInfo.add(menuInfoItem);
 
 		panelTable = new JScrollPane();
@@ -111,21 +103,17 @@ public class Main extends JFrame {
 			tableAux.setRowCount(0);
 
 			List<Book> list = service.findAll();
-			Object[] data = new Object[4];
+			Object[] data = new Object[3];
 
-			for (Book book : list) {
+			list.forEach(book -> {
 				data[0] = book.getId();
 				data[1] = book.getName();
 				data[2] = book.getAuthor();
 
 				tableAux.addRow(data);
-			}
-		} catch (ConnectionFailedException e) {
-			String message = "Erro ao conectar com o banco de dados!";
-			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
-		} catch (FindBookFailedException e) {
-			String message = "Erro ao carregar dos dados!";
-			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+			});
+		} catch (ConnectionFailedException | FindBookFailedException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

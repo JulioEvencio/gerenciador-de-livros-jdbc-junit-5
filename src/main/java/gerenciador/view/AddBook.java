@@ -110,9 +110,7 @@ public class AddBook extends JDialog {
 
 		btnAdd = new JButton("Adicionar");
 		btnAdd.setFont(fontButton);
-		btnAdd.addActionListener(ActionListener -> {
-			this.addBook();
-		});
+		btnAdd.addActionListener(ActionListener -> this.addBook());
 		panelAdd.add(btnAdd);
 	}
 
@@ -124,12 +122,8 @@ public class AddBook extends JDialog {
 			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.INFORMATION_MESSAGE);
 
 			this.dispose();
-		} catch (ConnectionFailedException e) {
-			String message = "Erro ao conectar com o banco de dados!";
-			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
-		} catch (SaveBookFailedException e) {
-			String message = "Erro ao adicionar o livro!";
-			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+		} catch (ConnectionFailedException | SaveBookFailedException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

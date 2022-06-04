@@ -126,9 +126,7 @@ public class UpdateBook extends JDialog {
 
 		btnUpdate = new JButton("Editar");
 		btnUpdate.setFont(fontButton);
-		btnUpdate.addActionListener(ActionListener -> {
-			this.updateBook();
-		});
+		btnUpdate.addActionListener(ActionListener -> this.updateBook());
 		panelUpdate.add(btnUpdate);
 	}
 
@@ -136,14 +134,9 @@ public class UpdateBook extends JDialog {
 		try {
 			List<Book> list = service.findAll();
 
-			for (Book book : list)
-				txtId.addItem(String.valueOf(book.getId()));
-		} catch (ConnectionFailedException e) {
-			String message = "Erro ao conectar com o banco de dados!";
-			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
-		} catch (FindBookFailedException e) {
-			String message = "Erro ao carregar dos dados!";
-			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+			list.forEach(book -> txtId.addItem(String.valueOf(book.getId())));
+		} catch (ConnectionFailedException | FindBookFailedException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -164,10 +157,9 @@ public class UpdateBook extends JDialog {
 			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.INFORMATION_MESSAGE);
 
 			this.dispose();
-		} catch (ConnectionFailedException e) {
-			String message = "Erro ao conectar com o banco de dados!";
-			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
-		} catch (UpdateBookFailedException | NumberFormatException e) {
+		} catch (ConnectionFailedException | UpdateBookFailedException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
+		} catch (NumberFormatException e) {
 			String message = "Erro ao remover o livro!";
 			JOptionPane.showMessageDialog(this, message, "Gerenciador de Livros", JOptionPane.ERROR_MESSAGE);
 		}
