@@ -14,7 +14,7 @@ Apenas um projeto para praticar testes com o **Junit 5** e conexão com o banco 
 ```
 git clone https://github.com/JulioEvencio/gerenciador-de-livros-jdbc-junit-5.git
 ```
-## Observações
+
 ## Conexão com o banco
 - Para este programa rodar, é necessário uma conexão com algum banco de dados. O padrão é o **MySQL**, mas isso pode ser alterado no **pom.xml**
 - A classe **ConnectionFactory.java**, do pacote **gerenciador.repository**, é a responsável por criar a conexão com o banco de dados. Para adaptar a conexão com o banco de dados basta alterar a **url**, **user** e **password**
@@ -27,14 +27,14 @@ A seguinte imagem representa a tabela do **livro**:
 
 ![Gerenciador de Livros](https://user-images.githubusercontent.com/65574850/171516686-bcf7948c-4cbf-4332-96be-2933ef674847.png)
 
-## Comandos
+### Comandos
 
-### Criar banco de dados
+#### Criar banco de dados
 ```
 CREATE DATABASE IF NOT EXISTS gerenciador_de_livros;
 ```
 
-### Criar tabela
+#### Criar tabela
 ```
 CREATE TABLE IF NOT EXISTS tb_livro (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
