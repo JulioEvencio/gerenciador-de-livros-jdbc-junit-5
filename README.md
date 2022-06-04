@@ -3,11 +3,11 @@
 Apenas um projeto para praticar testes com o **Junit 5** e conexão com o banco de dados via **JDBC**
 
 ## Ferramentas
-- :pushpin: Java 11 **OpenJDK**
-- :pushpin: Maven
-- :pushpin: Eclipse
-- :pushpin: MySQL 8
-- :pushpin: Junit 5
+- :pushpin: **Java 11**
+- :pushpin: **Maven**
+- :pushpin: **Eclipse**
+- :pushpin: **MySQL 8**
+- :pushpin: **Junit 5**
 
 ## Repositório
 ### Clone
