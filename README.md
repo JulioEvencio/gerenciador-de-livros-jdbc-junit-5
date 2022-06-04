@@ -26,3 +26,19 @@ A seguinte imagem representa a tabela do **livro**:
 
 
 ![Gerenciador de Livros](https://user-images.githubusercontent.com/65574850/171516686-bcf7948c-4cbf-4332-96be-2933ef674847.png)
+
+## Comandos
+
+### Criar banco de dados
+```
+CREATE DATABASE IF NOT EXISTS gerenciador_de_livros;
+```
+
+### Criar tabela
+```
+CREATE TABLE IF NOT EXISTS tb_livro (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  autor VARCHAR(255) NOT NULL
+)ENGINE=InnoDB AUTO_INCREMENT=1;
+```
